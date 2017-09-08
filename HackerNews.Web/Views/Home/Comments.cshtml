@@ -1,0 +1,29 @@
+﻿@using HackerNews.Data
+@model HackerNews.Web.Models.CommentsViewModel
+
+<h2 style="text-align: center">@Model.Post.LinkTitle Comments</h2>
+
+<div id="commentsDiv">
+    @foreach (Comment c in Model.Comments)
+    {
+        <div class="well">
+            <p>
+                @c.CommentText
+                <br />
+                posted by @c.FirstName @c.LastName
+            </p>
+        </div>
+    }
+</div>
+
+@if(Model.User != null)
+{
+    <textarea data-id="@Model.Post.Id" id="commentText" class="form-control" rows="7" placeholder="Comment"></textarea>
+    <br />
+    <button id="SubmitComment" class="btn btn-submit">Submit Comment</button>
+}
+
+@section scripts
+{
+    <script src="~/Scripts/Comments.js"></script>
+}

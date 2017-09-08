@@ -1,0 +1,17 @@
+﻿@using HackerNews.Data
+@model HackerNews.Web.Models.IndexViewModel
+
+@if (Model.User != null)
+{
+    <h4>Welcome @Model.User</h4>
+}
+
+<div>
+    <h2 style="text-align:center">@Model.Type</h2>
+    @{ Html.RenderPartial("_List", Model.Posts);}
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/index.js"></script>
+}

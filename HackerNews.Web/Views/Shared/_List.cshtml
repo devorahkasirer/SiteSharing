@@ -1,0 +1,21 @@
+﻿@using HackerNews.Data
+@model IEnumerable<Post>
+
+<ol>
+    @foreach(Post p in Model)
+    {
+        <li>
+            <p>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <button data-id="@p.Id" id="up-@p.Id" class="voteUp btn"><span class="glyphicons glyphicons-chevron-up"  aria-hidden="true"></span>Up</button>
+                    <button data-id="@p.Id" id="down-@p.Id" class="voteDown btn"><span class="glyphicons glyphicons-chevron-down"  aria-hidden="true"></span>Down</button>
+                }
+                <a href="@p.LinkUrl" target="_blank">@p.LinkTitle</a>
+                <br/>
+                by <a href="/home/userPosts?userId=@p.UserId">@p.User.FirstName @p.User.LastName</a> posted on @p.TimePosted.ToShortDateString() at @p.TimePosted.ToShortTimeString()
+                | <span id="@p.Id">UpVotes: @p.UpVotes | DownVotes: @p.DownVotes</span> | <a href="/articles/@p.Id/comments">comments</a>
+            </p>
+        </li>
+    }
+</ol>
